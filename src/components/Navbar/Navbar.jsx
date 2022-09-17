@@ -4,13 +4,13 @@ import { useSelector } from "react-redux";
 import "./navbar.css";
 
 const Navbar = () => {
-  const name = useSelector(state => state.user.name);
+  const name = useSelector(state => state.user.userInfo.name);
 
   return (
     <div className="navbar">
       <div className="navbarWrapper">
         <div className="navbarLeft">
-          <span className="logo">Lama App</span>
+          <span className="logo">Redux App</span>
           <span className="navbarLink">Home</span>
           <span className="navbarLink">About</span>
           <span className="navbarLink">Contact</span>
