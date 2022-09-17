@@ -7,7 +7,7 @@ import "./App.css";
 
 const App = () => {
   return (
-    <>asdasd
+    <>
       <Navbar />
       <div className="container">
         <Leftbar />

@@ -1,11 +1,24 @@
-import React from "react";
-import Warning from "./../Warning/Warning";
-import "./update.css";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { update } from "../../redux/userSlice";
+import Warning from "./../Warning/Warning";
+
+import "./update.css";
 
 export default function Update() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+
+    dispatch(update({ name, email }))
+  }
+
+  console.log(name, email)
 
   return (
     <div className="update">
@@ -31,7 +44,8 @@ export default function Update() {
               <input
                 className="formInput"
                 type="text"
-                placeholder="John"
+                placeholder={user.name}
+                onChange={e => setName(e.target.value)}
               />
             </div>
             <div className="formItem">
@@ -39,7 +53,8 @@ export default function Update() {
               <input
                 className="formInput"
                 type="text"
-                placeholder="john@gmail.com"
+                placeholder={user.email}
+                onChange={e => setEmail(e.target.value)}
               />
             </div>
             <div className="formItem">
@@ -48,6 +63,7 @@ export default function Update() {
             </div>
             <button
               className="updateButton"
+              onClick={handleUpdate}
             >
               Update
             </button>
