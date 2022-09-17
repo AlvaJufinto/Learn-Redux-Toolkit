@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { update } from "../../redux/userSlice";
+import { update, remove, addHello } from "../../redux/userSlice";
 import Warning from "./../Warning/Warning";
 
 import "./update.css";
@@ -15,17 +15,21 @@ export default function Update() {
   const handleUpdate = (e) => {
     e.preventDefault();
 
-    dispatch(update({ name, email }))
+    dispatch(addHello({ name, email }))
   }
 
-  console.log(name, email)
+  const handleDelete = (e) => {
+    e.preventDefault();
+    dispatch(remove());
+  }
+
 
   return (
     <div className="update">
       <div className="updateWrapper">
         <h3 className="updateTitle">Update Your Account</h3>
         <Warning />
-        <button className="delete">Delete Account</button>
+        <button className="delete" onClick={handleDelete}>Delete Account</button>
         <div className="updateContainer">
           <form>
             <div className="formItem">
@@ -52,7 +56,7 @@ export default function Update() {
               <label>Email</label>
               <input
                 className="formInput"
-                type="text"
+                type="email"
                 placeholder={user.email}
                 onChange={e => setEmail(e.target.value)}
               />
